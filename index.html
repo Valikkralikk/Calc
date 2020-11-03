@@ -6,6 +6,66 @@
     <link rel="stylesheet" href="./style.css">
     <title>Document</title>
 </head>
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
+    body {
+        background-color: grey;
+    }
+
+    .container {
+        max-width: 608px;
+        margin: 0 auto;
+        height: 100vh;
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr 1fr;
+        background-color: black;
+        gap: 2px 2px;
+        border: 2px solid #000;
+    }
+
+    .button {
+        background-color: aqua;
+        cursor: pointer;
+        text-align: center;
+        font-weight: bold;
+        user-select: none;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .input {
+        grid-column: 1/5;
+    }
+
+    #inputPlace {
+        width: 100%;
+        height: 100%;
+    }
+
+    #inputPlace input{
+        width: 100%;
+        height: 100%;
+        font-size: 30px;
+        text-align: right;
+    }
+
+    .clear {
+        grid-column: 1/3;
+    }
+    .delete {
+        grid-column: 3/5;
+    }
+
+    .equal {
+        grid-column: 3/5;
+    }
+</style>
 <body>
     <div class="container">
         <div class="input">
@@ -32,5 +92,29 @@
         <div class="button equal" onclick="eq()">=</div>
     </div>
 <script src="./script.js"></script>
+<script>
+    var inputValue = document.form.textview;
+
+    function add(mark){
+        inputValue.value = inputValue.value + mark;
+    }
+
+    function del(){
+        var x = inputValue.value.split('');
+        x.pop();
+        inputValue.value = x.join('');
+    }
+
+    function clean(){
+        inputValue.value = "";
+    }
+
+    function eq(){
+        var x = inputValue.value;
+        if(x){
+            inputValue.value = eval(x);
+        }
+    }
+</script>
 </body>
 </html>

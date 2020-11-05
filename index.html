@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="./style.css">
+    <!-- <link rel="stylesheet" href="./style.css"> -->
     <title>Document</title>
 </head>
 <style>
@@ -23,13 +23,11 @@
         height: 100vh;
         display: grid;
         grid-template-columns: 1fr 1fr 1fr 1fr;
-        background-color: black;
-        gap: 2px 2px;
-        border: 2px solid #000;
+        grid-template-rows: .5fr .5fr 1fr 1fr 1fr 1fr 1fr 1fr;
     }
 
     .button {
-        background-color: aqua;
+        background-color: #a5887e;
         cursor: pointer;
         text-align: center;
         font-weight: bold;
@@ -37,18 +35,21 @@
         display: flex;
         justify-content: center;
         align-items: center;
+        border: 1px solid #000;
+        font-size: 27px;
     }
 
     .input {
         grid-column: 1/5;
+        border: 1px solid #000;
     }
 
-    #inputPlace {
+    #inputPlace, #equalPlace {
         width: 100%;
         height: 100%;
     }
 
-    #inputPlace input{
+    #inputPlace input, #equalPlace input{
         width: 100%;
         height: 100%;
         font-size: 30px;
@@ -57,64 +58,92 @@
 
     .clear {
         grid-column: 1/3;
+        background-color:#795548;
     }
     .delete {
         grid-column: 3/5;
     }
 
     .equal {
-        grid-column: 3/5;
+        grid-column: 3/4;
+    }
+
+    .zero {
+        grid-column: 1/3;
+    }
+
+    .up input{
+        background-color: #adafaf;
+        border:none;
+    }
+
+    .up input:focus{
+        outline: none;
+    }
+
+    .input.up {
+        user-select: none;
+        border:none;
     }
 </style>
 <body>
     <div class="container">
+        <div class="input up">
+            <form id="equalPlace" name="form">
+                <input type="text" name="textview2" readonly>
+            </form>
+        </div>
         <div class="input">
             <form id="inputPlace" name="form">
                 <input type="text" name="textview">
             </form>
         </div>
-        <div class="button clear" onclick="clean()">C</div>
-        <div class="button delete" onclick="del()">&larr;</div>
-        <div class="button" onclick="add('+')">+</div>
+        <div class="button clear" onclick="clean()" >C</div>
+        <div class="button delete" onclick="del()" >&larr;</div>
+        <div class="button" onclick="add('+')" >+</div>
         <div class="button" onclick="add('-')" >-</div>
-        <div class="button" onclick="add('*')" >X</div>
+        <div class="button" onclick="add('*')" >*</div>
         <div class="button" onclick="add('/')" >&divide;</div>
         <div class="button" onclick="add('1')" >1</div>
         <div class="button" onclick="add('2')" >2</div>
         <div class="button" onclick="add('3')" >3</div>
+        <div class="button" onclick="add('(')" >(</div>
         <div class="button" onclick="add('4')" >4</div>
         <div class="button" onclick="add('5')" >5</div>
         <div class="button" onclick="add('6')" >6</div>
+        <div class="button" onclick="add(')')" >)</div>
         <div class="button" onclick="add('7')" >7</div>
         <div class="button" onclick="add('8')" >8</div>
         <div class="button" onclick="add('9')" >9</div>
+        <div class="button" onclick="add('.')" >.</div>
         <div class="button zero" onclick="add('0')" >0</div>
         <div class="button equal" onclick="eq()">=</div>
+        <div class="button " onclick="add('%')" >%</div>
     </div>
-<script src="./script.js"></script>
-<script>
-    var inputValue = document.form.textview;
+<!-- <script src="./script.js"></script> -->
+    <script>
+        var inputValue = document.getElementsByTagName('input')[1];
 
-    function add(mark){
-        inputValue.value = inputValue.value + mark;
-    }
-
-    function del(){
-        var x = inputValue.value.split('');
-        x.pop();
-        inputValue.value = x.join('');
-    }
-
-    function clean(){
-        inputValue.value = "";
-    }
-
-    function eq(){
-        var x = inputValue.value;
-        if(x){
-            inputValue.value = eval(x);
+        function add(mark){
+            inputValue.value = inputValue.value + mark;
         }
-    }
-</script>
+
+        function del(){
+            var x = inputValue.value.split('');
+            x.pop();
+            inputValue.value = x.join('');
+        }
+
+        function clean(){
+            inputValue.value = "";
+        }
+
+        function eq(){
+            var x = inputValue.value;
+            if(x){
+                document.getElementsByTagName('input')[0].value = eval(x);
+            }
+        }
+    </script>
 </body>
 </html>

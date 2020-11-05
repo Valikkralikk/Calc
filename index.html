@@ -118,7 +118,7 @@
         <div class="button" onclick="add('.')" >.</div>
         <div class="button zero" onclick="add('0')" >0</div>
         <div class="button equal" onclick="eq()">=</div>
-        <div class="button " onclick="add('%')" >%</div>
+        <div class="button " onclick="percent()" >%</div>
     </div>
 <!-- <script src="./script.js"></script> -->
     <script>
@@ -126,6 +126,12 @@
 
         function add(mark){
             inputValue.value = inputValue.value + mark;
+        }
+
+        function percent(){
+            if(document.getElementsByTagName('input')[0].value){
+                document.getElementsByTagName('input')[0].value = (+document.getElementsByTagName('input')[0].value/100*eval(document.getElementsByTagName('input')[1].value));
+            }
         }
 
         function del(){
